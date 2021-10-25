@@ -2,35 +2,43 @@
   グローバル変数
 ************************************************/
 //カードの山（配列）
+let cards = [];
 //自分のカード（配列）
+let myCards = [];
 //相手のカード（配列）
+let comCards = [];
 //勝敗決定フラグ（論理型）
+let isGameOver = false;
 
 /***********************************************
   イベントハンドラの割り当て
 ************************************************/
 
 //ページの読み込みが完了した時に実行する関数を登録。
-window.addEventListener("load", 初期表示);
+window.addEventListener("load", loadhandler);
 
 //「カードを引く」ボタンを押した時に実行する関数を登録
-document.querySelector("＃ボタンのID").addEventListener("click", カードを引く);
+document.querySelector("#pick").addEventListener("click", clickPickHandler);
 
 //「勝負する！」ボタンを押した時実行する関数を登録
-document.querySelector("#ボタンのID").addEventListener("click",勝負する);
+document.querySelector("#judge").addEventListener("click", clickJadgeHandler);
 
 //「もう一回遊ぶ」ボタンを押した時実行する関数を登録
-document.querySelector("ボタンのID").addEventListener("click",もう一回遊ぶ);
+document.querySelector("reset").addEventListener("click",clickResetHandler);
 
 /***********************************************
   イベントハンドラ
 ************************************************/
 //ページの読み込みが完了した時実行する関数
-function 初期表示(){
+function loadhandler(){
   //シャッフル
+  suffle();
   //自分がカードを引く
+  pickMyCard();
   //相手がカードを引く
+  pickComCard();
   //画面を更新する
+  updateView();
 }
   
 function カードを引く(){
