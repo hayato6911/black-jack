@@ -67,25 +67,43 @@ function もう一回遊ぶ(){
   ゲーム関数
 ************************************************/
 //カードの山をシャッフルする関数
-  function シャッフル(){
-    for(100回繰り返す){
+  function shuffle() {
+    //カードを初期化
+    for (let i = 1; i <= 52; i++){
+      cards.push(i);
+    }
+    //100回繰り返す
+    for(let i = 0; i < 100 i++) {
     //カードの山からランダムに選んだ２枚を入れ替える
+    let = j Math.floor(Math.random() * 52);
+    let = k Math.floor(Math.random() * 52);
+    let temp = cards[j];
+    cards[j] = cards[k];
+    cards[k] = temp;
     }
   }
-  
-   function 自分がカードを引く(){
-    if (自分のカードの枚数が４枚以下){
+
+   //自分がカードを引く関数
+   function pickMyCard(){
+    //自分のカードの枚数が４枚以下の場合
+    if (comCards.length <= 4){
       //カードの山（配列）から１枚取り出す。
+      let card = cards.pop();
       //取り出した１枚を自分のカード（配列）に追加する。
+      myCards.push(card);
     }
   }
   
   //相手がカードを引く関数
-  function 相手のカードを引く(){
-    if (相手のカードの枚数が４枚以下){
-      if(考える){
+  function pickComCard(){
+    //相手のカードの枚数が４枚以下の場合
+    if (comCards.length <= 4){
+      //カードを引くかどうか考える
+      if(piccAI(comCards)){
         //カードの山（配列）から１枚取り出す。
+        let card = cards.pop();
         //取り出した１枚を相手のカード（配列）に追加する。
+        comCards.push(card);
       }
     }
   }
